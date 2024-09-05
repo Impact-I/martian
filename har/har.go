@@ -20,7 +20,6 @@ package har
 
 import (
 	"bytes"
-	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -336,7 +335,6 @@ func (c *Content) UnmarshalJSON(data []byte) error {
 	}
 
 	var txt []byte
-	var err error
 	switch cj.Encoding {
 	case "base64":
 		txt = []byte(cj.Text)
