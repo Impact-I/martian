@@ -312,7 +312,7 @@ func (c Content) MarshalJSON() ([]byte, error) {
 	var txt string
 	switch c.Encoding {
 	case "base64":
-		txt = base64.StdEncoding.EncodeToString(c.Text)
+		txt = string(c.Text)
 	case "":
 		txt = string(c.Text)
 	default:
@@ -339,10 +339,7 @@ func (c *Content) UnmarshalJSON(data []byte) error {
 	var err error
 	switch cj.Encoding {
 	case "base64":
-		txt, err = base64.StdEncoding.DecodeString(cj.Text)
-		if err != nil {
-			return fmt.Errorf("failed to decode base64-encoded Content.Text: %v", err)
-		}
+		txt = []byte(cj.Text)
 	case "":
 		txt = []byte(cj.Text)
 	default:
