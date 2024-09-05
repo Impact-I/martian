@@ -214,7 +214,7 @@ type pdBinary struct {
 	MimeType string `json:"mimeType"`
 	// Params is a list of posted parameters (in case of URL encoded parameters).
 	Params   []Param `json:"params"`
-	Text     []byte  `json:"text"`
+	Text     string  `json:"text"`
 	Encoding string  `json:"encoding"`
 }
 
@@ -227,7 +227,7 @@ func (p *PostData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(pdBinary{
 		MimeType: p.MimeType,
 		Params:   p.Params,
-		Text:     []byte(p.Text),
+		Text:     p.Text,
 		Encoding: "",
 	})
 }
