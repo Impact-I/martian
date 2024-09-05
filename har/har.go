@@ -229,7 +229,7 @@ func (p *PostData) MarshalJSON() ([]byte, error) {
 		MimeType: p.MimeType,
 		Params:   p.Params,
 		Text:     []byte(p.Text),
-		Encoding: "base64",
+		Encoding: "",
 	})
 }
 
@@ -600,7 +600,7 @@ func NewResponse(res *http.Response, withBody bool) (*Response, error) {
 	}
 
 	r.Content = &Content{
-		Encoding: "base64",
+		Encoding: "",
 		MimeType: res.Header.Get("Content-Type"),
 	}
 
